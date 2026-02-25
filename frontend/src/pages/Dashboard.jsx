@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
+import "./dashboard.css";
 
 function Dashboard() {
   const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("token");
-
-        console.log("TOKEN:", token);
 
         const res = await API.get("/match/", {
           headers: {
@@ -21,35 +19,76 @@ function Dashboard() {
         console.log("MATCH RESPONSE:", res.data);
 
         setData(res.data.results || res.data);
+
       } catch (err) {
-        console.log("ERROR:", err);
-        setError("Failed to load data");
+        console.log(err);
       }
     };
 
     fetchData();
   }, []);
 
-  if (error) return <h2>{error}</h2>;
+  // 🔹 Stats
+  const total = Array.isArray(data) ? data.length : 0;
+
+  const eligible = Array.isArray(data)
+    ? data.filter(item => item.status === "Eligible").length
+    : 0;
+
+  const topScore = Array.isArray(data) && data.length > 0
+    ? Math.max(...data.map(item => item.score))
+    : 0;
 
   return (
-  <div>
-    <h1>Dashboard</h1>
+  <div className="container">
+    <h1 className="title">🎓 Dashboard</h1>
 
-    {/* If no data */}
-    {Array.isArray(data) && data.length === 0 && (
-      <p>No data</p>
-    )}
+    {/* Stats */}
+    <div className="stats">
+      <div className="card">
+        <h3>Total</h3>
+        <p>{total}</p>
+      </div>
 
-    {/* Actual data */}
-    {Array.isArray(data) &&
-      data.map((item, index) => (
-        <div key={index}>
-          <h3>{item.name}</h3>
-          <p>{item.status}</p>
-        </div>
-      ))}
+      <div className="card">
+        <h3>Eligible</h3>
+        <p>{eligible}</p>
+      </div>
+
+      <div className="card">
+        <h3>Top Score</h3>
+        <p>{topScore}</p>
+      </div>
+    </div>
+
+    {/* List */}
+    <div className="list">
+      {Array.isArray(data) && data.length === 0 && <p>No data</p>}
+
+      {Array.isArray(data) &&
+        data.map((item, index) => (
+          <div key={index} className="item">
+            <h3>{item.name}</h3>
+            <p>{item.provider}</p>
+            <p>Score: {item.score}</p>
+
+            <p
+              className={`status ${
+                item.status === "Eligible"
+                  ? "eligible"
+                  : item.status === "Partially Eligible"
+                  ? "partial"
+                  : "not"
+              }`}
+            >
+              {item.status}
+            </p>
+
+            <p>₹ {item.amount}</p>
+          </div>
+        ))}
+    </div>
   </div>
-);}
-
+);
+}
 export default Dashboard;

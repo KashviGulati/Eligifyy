@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --sage: #9CBD96;
+  --cream: #E1EACD;
+  --ivory: #F5F2E8;
+  --purple: #7B6B9E;
+  --text-dark: #2A2635;
+  --text-soft: #8A8298;
+}
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--ivory);
+}
+
+/* Page */
+.auth-page {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F5F2E8;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Card */
+.auth-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 24px;
+  width: 320px;
+  box-shadow: 
+    0 30px 80px rgba(42,38,53,0.12),
+    0 8px 20px rgba(42,38,53,0.06);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Logo */
+.logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  margin: 0;
+  color: var(--text-dark);
+}
+
+.logo span {
+  color: var(--purple);
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  margin-bottom: 1.5rem;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.2rem;   /* 🔥 more breathing space */
+  border-radius: 14px;
+  border: 1px solid #E6E2D9;
+  background: #FFFFFF;     /* 🔥 remove grey */
+  font-size: 0.95rem;
+  color: #2A2635;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+input::placeholder {
+  color: #B0A8C0;
+}
+
+input:focus {
+  outline: none;
+  border-color: #7B6B9E;
+  box-shadow: 0 0 0 3px rgba(123,107,158,0.12);
+}
+/* Button */
+button {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 999px;
+  border: none;
+  background: #7B6B9E;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+button:hover {
+  background: #5E5080;
+  transform: translateY(-1px);
+}
+
+/* Switch */
+.switch {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+}
+
+.switch span {
+  color: var(--purple);
+  cursor: pointer;
+}

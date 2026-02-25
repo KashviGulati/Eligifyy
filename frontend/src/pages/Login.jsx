@@ -1,6 +1,7 @@
 import { useState } from "react";
 import API from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import "./auth.css";
 
 function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -10,46 +11,69 @@ function Login() {
     try {
       const res = await API.post("/auth/login/", form);
 
-      console.log("LOGIN RESPONSE:", res.data);
-
       const token = res.data.access;
 
       if (!token) {
-        alert("Login failed: No token");
+        alert("Login failed");
         return;
       }
 
       localStorage.setItem("token", token);
 
-      // directly go to dashboard
-      navigate("/dashboard");
+      const profileRes = await API.get("/profile/", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+
+      if (!profileRes.data.exists) {
+        navigate("/profile");
+      } else {
+        navigate("/dashboard");
+      }
 
     } catch (err) {
       console.log(err);
-      alert("Login failed");
+      alert("Invalid credentials");
     }
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="auth-page">
+      <div className="auth-card">
+        
+        <h1 className="logo">
+          Eligify<span>.</span>
+        </h1>
 
-      <input
-        placeholder="Email"
-        onChange={(e) =>
-          setForm({ ...form, email: e.target.value })
-        }
-      />
+        <p className="subtitle">
+          Find scholarships tailored for you
+        </p>
 
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) =>
-          setForm({ ...form, password: e.target.value })
-        }
-      />
+        <input
+          placeholder="Email"
+          onChange={(e) =>
+            setForm({ ...form, email: e.target.value })
+          }
+        />
 
-      <button onClick={handleLogin}>Login</button>
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) =>
+            setForm({ ...form, password: e.target.value })
+          }
+        />
+
+        <button onClick={handleLogin}>Login</button>
+
+        <div className="switch">
+          Don’t have an account?{" "}
+          <span onClick={() => navigate("/signup")}>
+            Sign up
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

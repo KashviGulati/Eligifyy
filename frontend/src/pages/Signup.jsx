@@ -1,6 +1,7 @@
 import { useState } from "react";
 import API from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import "./auth.css";
 
 function Signup() {
   const [form, setForm] = useState({
@@ -13,13 +14,9 @@ function Signup() {
 
   const handleSignup = async () => {
     try {
-      const res = await API.post("/auth/register/", form);
-
-      console.log("SIGNUP RESPONSE:", res.data);
+      await API.post("/auth/register/", form);
 
       alert("Signup successful!");
-
-      // go to login page
       navigate("/");
 
     } catch (err) {
@@ -29,32 +26,48 @@ function Signup() {
   };
 
   return (
-    <div>
-      <h2>Signup</h2>
+    <div className="auth-page">
+      <div className="auth-card">
+        
+        <h1 className="logo">
+          Eligify<span>.</span>
+        </h1>
 
-      <input
-        placeholder="Email"
-        onChange={(e) =>
-          setForm({ ...form, email: e.target.value })
-        }
-      />
+        <p className="subtitle">
+          Create your account
+        </p>
 
-      <input
-        placeholder="Username"
-        onChange={(e) =>
-          setForm({ ...form, username: e.target.value })
-        }
-      />
+        <input
+          placeholder="Email"
+          onChange={(e) =>
+            setForm({ ...form, email: e.target.value })
+          }
+        />
 
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) =>
-          setForm({ ...form, password: e.target.value })
-        }
-      />
+        <input
+          placeholder="Username"
+          onChange={(e) =>
+            setForm({ ...form, username: e.target.value })
+          }
+        />
 
-      <button onClick={handleSignup}>Signup</button>
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) =>
+            setForm({ ...form, password: e.target.value })
+          }
+        />
+
+        <button onClick={handleSignup}>Sign Up</button>
+
+        <div className="switch">
+          Already have an account?{" "}
+          <span onClick={() => navigate("/")}>
+            Login
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

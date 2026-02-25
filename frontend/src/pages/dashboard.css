@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --sage: #9CBD96;
+  --cream: #E1EACD;
+  --ivory: #F5F2E8;
+  --purple: #7B6B9E;
+  --text-dark: #2A2635;
+  --text-soft: #8A8298;
+}
+
+/* Container */
+.container {
+  padding: 2rem;
+  background: var(--ivory);
+  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Title */
+.title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+}
+
+/* Stats Section */
+.stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  flex: 1;
+  background: white;
+  border: 1px solid var(--cream);
+  padding: 1rem;
+  border-radius: 14px;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(156,189,150,0.25);
+}
+
+.card h3 {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
+.card p {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--purple);
+}
+
+/* List grid */
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+}
+
+/* Item Card */
+.item {
+  background: white;
+  padding: 1.3rem;
+  border-radius: 18px;
+  border: 1px solid var(--cream);
+  position: relative;
+  transition: 0.2s;
+}
+
+.item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(156,189,150,0.25);
+}
+
+/* Top strip */
+.item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 5px;
+  width: 100%;
+  border-radius: 18px 18px 0 0;
+  background: linear-gradient(90deg, var(--sage), var(--purple));
+}
+
+/* Text */
+.item h3 {
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.item p {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  margin: 3px 0;
+}
+
+/* Status */
+.status {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.status.eligible {
+  color: #2E7D32;
+}
+
+.status.partial {
+  color: #856404;
+}
+
+.status.not {
+  color: #a94442;
+}
+
+/* Amount */
+.item p:last-child {
+  font-weight: bold;
+  color: var(--purple);
+}

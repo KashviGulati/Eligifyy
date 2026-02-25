@@ -1,8 +1,10 @@
 from rest_framework import serializers
-from .models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import get_user_model
 
-# REGISTER
+User = get_user_model()
+
+
+# 🔹 REGISTER
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -12,22 +14,21 @@ class RegisterSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-        user = User.objects.create_user(**validated_data)
-        return user
+        return User.objects.create_user(**validated_data)
 
 
-# LOGIN
+# 🔹 LOGIN
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField()
 
     def validate(self, data):
-        user = authenticate(
-            username=data['email'],  # because USERNAME_FIELD = email
-            password=data['password']
-        )
+        try:
+            user = User.objects.get(email=data['email'])
+        except User.DoesNotExist:
+            raise serializers.ValidationError("Invalid credentials")
 
-        if not user:
+        if not user.check_password(data['password']):
             raise serializers.ValidationError("Invalid credentials")
 
         return user

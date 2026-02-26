@@ -127,3 +127,26 @@
   font-weight: bold;
   color: var(--purple);
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.logout-btn {
+  width: auto;
+  background: #dc2626;       
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  background: #b91c1c;        /* darker red */
+}

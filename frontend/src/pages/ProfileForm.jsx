@@ -1,6 +1,7 @@
 import { useState } from "react";
 import API from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import "./profile.css";
 
 function ProfileForm() {
   const [form, setForm] = useState({
@@ -25,7 +26,6 @@ function ProfileForm() {
       });
 
       alert("Profile saved!");
-
       navigate("/dashboard");
 
     } catch (err) {
@@ -35,17 +35,23 @@ function ProfileForm() {
   };
 
   return (
-    <div>
-      <h2>Create Profile</h2>
+    <div className="profile-page">
+      <div className="profile-card">
 
-      <input placeholder="Age" onChange={(e) => setForm({...form, age: e.target.value})} />
-      <input placeholder="Income" onChange={(e) => setForm({...form, income: e.target.value})} />
-      <input placeholder="Category" onChange={(e) => setForm({...form, category: e.target.value})} />
-      <input placeholder="CGPA" onChange={(e) => setForm({...form, cgpa: e.target.value})} />
-      <input placeholder="State" onChange={(e) => setForm({...form, state: e.target.value})} />
-      <input placeholder="Gender" onChange={(e) => setForm({...form, gender: e.target.value})} />
+        <h2 className="profile-title">Create Profile</h2>
 
-      <button onClick={handleSubmit}>Save Profile</button>
+        <input placeholder="Age" onChange={(e) => setForm({...form, age: e.target.value})} />
+        <input placeholder="Income" onChange={(e) => setForm({...form, income: e.target.value})} />
+        <input placeholder="Category" onChange={(e) => setForm({...form, category: e.target.value})} />
+        <input placeholder="CGPA" onChange={(e) => setForm({...form, cgpa: e.target.value})} />
+        <input placeholder="State" onChange={(e) => setForm({...form, state: e.target.value})} />
+        <input placeholder="Gender" onChange={(e) => setForm({...form, gender: e.target.value})} />
+
+        <button className="profile-btn" onClick={handleSubmit}>
+          Save Profile
+        </button>
+
+      </div>
     </div>
   );
 }

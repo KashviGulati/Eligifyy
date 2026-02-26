@@ -14,27 +14,38 @@ class MatchView(APIView):
         profile = Profile.objects.filter(user=user).first()
 
         if not profile:
-            return Response({"error": "Profile not found"})
+            return Response({
+                "message": "Profile not found",
+                "data": []
+            })
 
         scholarships = Scholarship.objects.all()
         results = []
 
         for sch in scholarships:
             score = 0
+            reasons = []
 
-            # CGPA check
             if profile.cgpa >= sch.min_cgpa:
-                score += 40
+                score += 30
+            else:
+                reasons.append("CGPA below requirement")
 
-            # Income check
             if profile.income <= sch.max_income:
-                score += 40
+                score += 30
+            else:
+                reasons.append("Income exceeds limit")
 
-            # Category check
             if profile.category.lower() == sch.category.lower():
                 score += 20
+            else:
+                reasons.append("Category mismatch")
 
-            # Determine status
+            if sch.state.lower() == "all" or profile.state.lower() == sch.state.lower():
+                score += 20
+            else:
+                reasons.append("State mismatch")
+
             if score >= 80:
                 status = "Eligible"
             elif score >= 50:
@@ -47,10 +58,11 @@ class MatchView(APIView):
                 "provider": sch.provider,
                 "score": score,
                 "status": status,
-                "amount": sch.amount
+                "amount": sch.amount,
+                "state": sch.state,
+                "reasons": reasons
             })
 
-        # sort by score (highest first)
         results.sort(key=lambda x: x['score'], reverse=True)
 
         return Response(results)

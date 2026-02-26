@@ -1,39 +1,43 @@
 [
   {
-    "name": "Merit Scholarship A",
-    "provider": "Central Government",
-    "min_cgpa": 8.0,
-    "max_income": 300000,
-    "category": "general",
-    "amount": 60000,
-    "deadline": "2026-06-30"
-  },
-  {
-    "name": "State Merit Scholarship",
+    "name": "Punjab Merit Scholarship",
     "provider": "Punjab Govt",
     "min_cgpa": 7.5,
     "max_income": 400000,
     "category": "general",
+    "state": "Punjab",
     "amount": 50000,
     "deadline": "2026-07-15"
   },
   {
+    "name": "Delhi Student Grant",
+    "provider": "Delhi Govt",
+    "min_cgpa": 7.0,
+    "max_income": 300000,
+    "category": "general",
+    "state": "Delhi",
+    "amount": 45000,
+    "deadline": "2026-07-20"
+  },
+  {
+    "name": "National Merit Scholarship",
+    "provider": "Central Govt",
+    "min_cgpa": 8.0,
+    "max_income": 500000,
+    "category": "general",
+    "state": "All",
+    "amount": 60000,
+    "deadline": "2026-06-30"
+  },
+  {
     "name": "SC Student Scholarship",
-    "provider": "Central Government",
+    "provider": "Central Govt",
     "min_cgpa": 6.0,
     "max_income": 500000,
     "category": "sc",
+    "state": "All",
     "amount": 40000,
     "deadline": "2026-08-01"
-  },
-  {
-    "name": "ST Education Grant",
-    "provider": "State Govt",
-    "min_cgpa": 6.5,
-    "max_income": 450000,
-    "category": "st",
-    "amount": 45000,
-    "deadline": "2026-07-20"
   },
   {
     "name": "OBC Support Scholarship",
@@ -41,6 +45,7 @@
     "min_cgpa": 7.0,
     "max_income": 350000,
     "category": "obc",
+    "state": "All",
     "amount": 42000,
     "deadline": "2026-07-10"
   },
@@ -50,35 +55,29 @@
     "min_cgpa": 8.5,
     "max_income": 600000,
     "category": "female",
+    "state": "All",
     "amount": 70000,
     "deadline": "2026-06-25"
   },
   {
-    "name": "Low Income Excellence Scholarship",
-    "provider": "NGO",
-    "min_cgpa": 7.5,
-    "max_income": 200000,
-    "category": "general",
-    "amount": 55000,
-    "deadline": "2026-08-05"
-  },
-  {
-    "name": "Rural Students Scholarship",
-    "provider": "State Govt",
+    "name": "Rural Punjab Scholarship",
+    "provider": "Punjab Govt",
     "min_cgpa": 6.5,
-    "max_income": 300000,
+    "max_income": 250000,
     "category": "general",
+    "state": "Punjab",
     "amount": 35000,
     "deadline": "2026-07-30"
   },
   {
-    "name": "Tech Excellence Grant",
-    "provider": "Private Tech Firm",
-    "min_cgpa": 9.0,
-    "max_income": 800000,
+    "name": "Delhi Technical Excellence Grant",
+    "provider": "Delhi Govt",
+    "min_cgpa": 8.5,
+    "max_income": 700000,
     "category": "general",
-    "amount": 100000,
-    "deadline": "2026-06-15"
+    "state": "Delhi",
+    "amount": 80000,
+    "deadline": "2026-06-18"
   },
   {
     "name": "Minority Scholarship",
@@ -86,8 +85,19 @@
     "min_cgpa": 6.0,
     "max_income": 400000,
     "category": "minority",
+    "state": "All",
     "amount": 38000,
     "deadline": "2026-07-18"
+  },
+  {
+    "name": "Need-Based Scholarship",
+    "provider": "NGO",
+    "min_cgpa": 7.0,
+    "max_income": 150000,
+    "category": "general",
+    "state": "All",
+    "amount": 50000,
+    "deadline": "2026-08-25"
   },
   {
     "name": "Engineering Achievers Scholarship",
@@ -95,6 +105,7 @@
     "min_cgpa": 8.2,
     "max_income": 500000,
     "category": "general",
+    "state": "All",
     "amount": 65000,
     "deadline": "2026-06-28"
   },
@@ -104,6 +115,7 @@
     "min_cgpa": 7.8,
     "max_income": 350000,
     "category": "female",
+    "state": "All",
     "amount": 60000,
     "deadline": "2026-07-22"
   },
@@ -113,6 +125,7 @@
     "min_cgpa": 6.0,
     "max_income": 250000,
     "category": "sc",
+    "state": "All",
     "amount": 30000,
     "deadline": "2026-08-10"
   },
@@ -122,6 +135,7 @@
     "min_cgpa": 6.5,
     "max_income": 300000,
     "category": "obc",
+    "state": "All",
     "amount": 32000,
     "deadline": "2026-08-12"
   },
@@ -131,52 +145,8 @@
     "min_cgpa": 8.8,
     "max_income": 700000,
     "category": "general",
+    "state": "All",
     "amount": 90000,
     "deadline": "2026-06-18"
-  },
-  {
-    "name": "Backward Class Scholarship",
-    "provider": "Central Govt",
-    "min_cgpa": 6.5,
-    "max_income": 350000,
-    "category": "obc",
-    "amount": 35000,
-    "deadline": "2026-07-05"
-  },
-  {
-    "name": "Meritorious Girls Scholarship",
-    "provider": "State Govt",
-    "min_cgpa": 8.0,
-    "max_income": 400000,
-    "category": "female",
-    "amount": 55000,
-    "deadline": "2026-07-12"
-  },
-  {
-    "name": "Scholarship for Disabled Students",
-    "provider": "Central Govt",
-    "min_cgpa": 6.0,
-    "max_income": 500000,
-    "category": "pwd",
-    "amount": 45000,
-    "deadline": "2026-08-20"
-  },
-  {
-    "name": "Academic Excellence Award",
-    "provider": "Private Org",
-    "min_cgpa": 9.2,
-    "max_income": 900000,
-    "category": "general",
-    "amount": 120000,
-    "deadline": "2026-06-10"
-  },
-  {
-    "name": "Need-Based Scholarship",
-    "provider": "NGO",
-    "min_cgpa": 7.0,
-    "max_income": 150000,
-    "category": "general",
-    "amount": 50000,
-    "deadline": "2026-08-25"
   }
 ]

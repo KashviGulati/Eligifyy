@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
 import "./dashboard.css";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +30,12 @@ function Dashboard() {
     fetchData();
   }, []);
 
+  // 🔹 Logout
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   // 🔹 Stats
   const total = Array.isArray(data) ? data.length : 0;
 
@@ -40,55 +48,63 @@ function Dashboard() {
     : 0;
 
   return (
-  <div className="container">
-    <h1 className="title">🎓 Dashboard</h1>
+    <div className="container">
 
-    {/* Stats */}
-    <div className="stats">
-      <div className="card">
-        <h3>Total</h3>
-        <p>{total}</p>
+      {/* 🔥 Header with logout */}
+      <div className="header">
+        <h1 className="title">🎓 Dashboard</h1>
+        <button className="logout-btn" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
 
-      <div className="card">
-        <h3>Eligible</h3>
-        <p>{eligible}</p>
+      {/* Stats */}
+      <div className="stats">
+        <div className="card">
+          <h3>Total</h3>
+          <p>{total}</p>
+        </div>
+
+        <div className="card">
+          <h3>Eligible</h3>
+          <p>{eligible}</p>
+        </div>
+
+        <div className="card">
+          <h3>Top Score</h3>
+          <p>{topScore}</p>
+        </div>
       </div>
 
-      <div className="card">
-        <h3>Top Score</h3>
-        <p>{topScore}</p>
+      {/* List */}
+      <div className="list">
+        {Array.isArray(data) && data.length === 0 && <p>No data</p>}
+
+        {Array.isArray(data) &&
+          data.map((item, index) => (
+            <div key={index} className="item">
+              <h3>{item.name}</h3>
+              <p>{item.provider}</p>
+              <p>Score: {item.score}</p>
+
+              <p
+                className={`status ${
+                  item.status === "Eligible"
+                    ? "eligible"
+                    : item.status === "Partially Eligible"
+                    ? "partial"
+                    : "not"
+                }`}
+              >
+                {item.status}
+              </p>
+
+              <p>₹ {item.amount}</p>
+            </div>
+          ))}
       </div>
     </div>
-
-    {/* List */}
-    <div className="list">
-      {Array.isArray(data) && data.length === 0 && <p>No data</p>}
-
-      {Array.isArray(data) &&
-        data.map((item, index) => (
-          <div key={index} className="item">
-            <h3>{item.name}</h3>
-            <p>{item.provider}</p>
-            <p>Score: {item.score}</p>
-
-            <p
-              className={`status ${
-                item.status === "Eligible"
-                  ? "eligible"
-                  : item.status === "Partially Eligible"
-                  ? "partial"
-                  : "not"
-              }`}
-            >
-              {item.status}
-            </p>
-
-            <p>₹ {item.amount}</p>
-          </div>
-        ))}
-    </div>
-  </div>
-);
+  );
 }
+
 export default Dashboard;

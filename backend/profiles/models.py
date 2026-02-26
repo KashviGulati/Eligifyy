@@ -5,7 +5,6 @@ User = settings.AUTH_USER_MODEL
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
     age = models.IntegerField()
     income = models.FloatField()
     category = models.CharField(max_length=50)

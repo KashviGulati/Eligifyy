@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --sage: #9CBD96;
+  --cream: #E1EACD;
+  --ivory: #F5F2E8;
+  --purple: #7B6B9E;
+  --text-dark: #2A2635;
+  --text-soft: #8A8298;
+}
+
+/* Page */
+.profile-page {
+  min-height: 100vh;
+  background: var(--ivory);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Card */
+.profile-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 24px;
+  width: 380px;
+  box-shadow: 
+    0 30px 80px rgba(42,38,53,0.12),
+    0 8px 20px rgba(42,38,53,0.06);
+}
+
+/* Title */
+.profile-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.8rem;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Inputs */
+.profile-card input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 14px;
+  border: 1px solid #E6E2D9;
+  background: white;
+  font-size: 0.95rem;
+  color: #2A2635;
+}
+
+.profile-card input:focus {
+  outline: none;
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(123,107,158,0.12);
+}
+
+/* Button */
+.profile-btn {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 10px;
+  border: none;
+  background: var(--purple);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.profile-btn:hover {
+  background: #5E5080;
+}

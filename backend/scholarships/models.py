@@ -7,7 +7,7 @@ class Scholarship(models.Model):
     min_cgpa = models.FloatField()
     max_income = models.FloatField()
     category = models.CharField(max_length=50)
-
+    state = models.CharField(max_length=100)
     amount = models.IntegerField()
     deadline = models.DateField()
 

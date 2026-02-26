@@ -9,8 +9,7 @@ class ProfileView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        profile = Profile.objects.filter(user=request.user).first()
-
+        profile = getattr(request.user, 'profile', None)
         if not profile:
             return Response({
                 "exists": False,
@@ -24,8 +23,7 @@ class ProfileView(APIView):
         })
 
     def post(self, request):
-        profile = Profile.objects.filter(user=request.user).first()
-
+        profile = getattr(request.user, 'profile', None)
         if profile:
             return Response({"message": "Profile already exists"})
 

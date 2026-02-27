@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-# 🔹 REGISTER
+# REGISTER
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -17,7 +17,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         return User.objects.create_user(**validated_data) #create user for hashing
 
 
-# 🔹 LOGIN
+# LOGIN
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField()
@@ -32,3 +32,8 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError("Invalid credentials")
 
         return user
+    
+class UserListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']

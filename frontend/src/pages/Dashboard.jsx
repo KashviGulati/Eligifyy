@@ -30,13 +30,12 @@ function Dashboard() {
     fetchData();
   }, []);
 
-  // 🔹 Logout
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
 
-  // 🔹 Stats
+
   const total = Array.isArray(data) ? data.length : 0;
 
   const eligible = Array.isArray(data)
@@ -50,7 +49,7 @@ function Dashboard() {
   return (
     <div className="container">
 
-      {/* 🔥 Header with logout */}
+  
       <div className="header">
         <h1 className="title">🎓 Dashboard</h1>
         <button className="logout-btn" onClick={handleLogout}>
@@ -58,7 +57,7 @@ function Dashboard() {
         </button>
       </div>
 
-      {/* Stats */}
+   
       <div className="stats">
         <div className="card">
           <h3>Total</h3>
@@ -76,7 +75,7 @@ function Dashboard() {
         </div>
       </div>
 
-      {/* List */}
+    
       <div className="list">
         {Array.isArray(data) && data.length === 0 && <p>No data</p>}
 

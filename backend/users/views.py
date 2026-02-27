@@ -1,10 +1,11 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import RegisterSerializer, LoginSerializer
+from .serializers import RegisterSerializer, LoginSerializer, UserListSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework import generics
+from .models import User
+from .pagination import UserPagination
 
-
-# REGISTER API
 class RegisterView(APIView):
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
@@ -16,7 +17,6 @@ class RegisterView(APIView):
         return Response(serializer.errors)
 
 
-# LOGIN API
 class LoginView(APIView):
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
@@ -32,3 +32,8 @@ class LoginView(APIView):
             })
 
         return Response(serializer.errors)
+    
+class UserListView(generics.ListAPIView):
+    queryset= User.objects.all()
+    serializer_class= UserListSerializer
+    pagination_class= UserPagination
